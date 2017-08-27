@@ -9,7 +9,7 @@
 	<url>http://maven.apache.org</url>
        <!-- Specifying the Versions of Spring, Hiberante, MySQL etc -->
        <properties>
-        <spring.version>4.1.5.RELEASE</spring.version>
+        <spring.version>4.1.6.RELEASE</spring.version>
         <hibernate.version>4.3.8.Final</hibernate.version>
         <mysql.version>5.1.10</mysql.version>
         <junit-version>4.11</junit-version>
@@ -17,6 +17,7 @@
         <jsp-version>2.1</jsp-version>
         <jstl-version>1.2</jstl-version>
         <java.version>1.7</java.version>
+         <powermock.version>1.6.6</powermock.version>
        
     </properties>
        <dependencies>
@@ -105,6 +106,19 @@
             <version>${junit-version}</version>
             <scope>test</scope>
         </dependency>
+        
+         <dependency>
+      <groupId>org.powermock</groupId>
+      <artifactId>powermock-module-junit4</artifactId>
+      <version>${powermock.version}</version>
+      <scope>test</scope>
+   </dependency>
+   <dependency>
+      <groupId>org.powermock</groupId>
+      <artifactId>powermock-api-mockito</artifactId>
+      <version>${powermock.version}</version>
+      <scope>test</scope>
+   </dependency>
              
        </dependencies>
        <build>

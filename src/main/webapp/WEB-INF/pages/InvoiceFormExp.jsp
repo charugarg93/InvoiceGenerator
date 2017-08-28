@@ -116,12 +116,13 @@
 				</tbody>
 			</table>
 			<br>
-			<input type="submit" value="Save" id="submit" />
-			<br>
+			
 			<a href="#" id="addProduct">ADD PRODUCT</a>
-			<br>
-			TOTAL: <form:input path="totalAmount" id="totalAmount" name="totalAmount" readonly="true" style="border:0px;" />
-		</form:form>
+			<br><br>
+			<input type="submit" value="Save" id="submit" />
+			<br><br>
+			$TOTAL: <form:input path="totalAmount" id="totalAmount" name="totalAmount" readonly="true" style="border:0px;" />
+			</form:form>
 	</div>
 </body>
 </html>

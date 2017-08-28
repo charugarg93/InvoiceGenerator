@@ -6,13 +6,16 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import com.jwt.model.Invoice;
+
+import com.jwt.model.ProductsInOrder;
+
 
 public class TestInvoiceDAO {
+	
 	@Mock
 	private InvoiceDAO invoiceDao;
 	@Mock
-	private Invoice invoice;
+	private ProductsInOrder invoice;
 
 	@Before
 	public void setupMock() {

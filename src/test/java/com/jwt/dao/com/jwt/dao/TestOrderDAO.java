@@ -9,14 +9,16 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import com.jwt.dao.OrderDAO;
-import com.jwt.model.Order;
+import com.jwt.model.OrderDetails;
 
 public class TestOrderDAO {
 
 	@Mock
 	private OrderDAO orderDao;
+
 	@Mock
-	private Order order;
+	private OrderDetails orderDetails;
+	
 
 	@Before
 	public void setupMock() {
@@ -25,13 +27,17 @@ public class TestOrderDAO {
 
 	@Test
 	public void testSaveOrder() {
-		when(orderDao.addOrderDetails(order)).thenReturn(5); 
-		assertEquals(5, orderDao.addOrderDetails(order));
+		
+		when(orderDao.addOrderDetails(orderDetails)).thenReturn(5);
+		assertEquals(5, orderDao.addOrderDetails(orderDetails));
+
 	}
 	
 	@Test
 	public void testMockCreationOfOrderDao(){
-		assertNotNull(order);
 		assertNotNull(orderDao);
+		assertNotNull(orderDetails);
 	}
+	
+
 }

@@ -21,20 +21,13 @@ public class User  implements Serializable{
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
- 
-    //@Size(min=3, max=75)
+
     @Column(name = "NAME")
     private String name;
     
-    //@NotEmpty
     @Column(name = "EMAIL", unique=true, nullable = false)
     private String email;
 
-    //@NotNull
-    /*@DateTimeFormat(pattern="dd/MM/yyyy") 
-    @Column(name = "DUE_DATE")
-    //@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-    private Date dueDate;*/
 
 	public int getId() {
 		return id;

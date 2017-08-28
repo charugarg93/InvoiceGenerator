@@ -4,7 +4,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.jwt.model.Order;
+import com.jwt.model.OrderDetails;
+
 
 @Repository
 public class OrderDAOImpl implements OrderDAO {
@@ -13,8 +14,8 @@ public class OrderDAOImpl implements OrderDAO {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public int addOrderDetails(Order order) {
-		sessionFactory.getCurrentSession().save(order);
+	public int addOrderDetails(OrderDetails order) {
+		sessionFactory.getCurrentSession().saveOrUpdate(order);
 		return order.getId();
 	}
 }

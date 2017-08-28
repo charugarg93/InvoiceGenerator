@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jwt.dao.OrderDAO;
-import com.jwt.model.Order;
+import com.jwt.model.OrderDetails;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -18,7 +18,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	@Transactional
 	public int addOrderDetails(int userId, float amount, Date dueDate) {
-		Order order = new Order();
+		OrderDetails order = new OrderDetails();
 		order.setUserId(userId);
 		order.setAmount(amount);
 		order.setDate(dueDate);

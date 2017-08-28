@@ -5,10 +5,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jwt.dao.InvoiceDAO;
-import com.jwt.model.Invoice;
+import com.jwt.model.ProductsInOrder;
 
 @Service
-public class InvoiceServiceImpl implements InvoiceService {
+public class ProductsInOrderServiceImpl implements ProductsInOrderService {
 
 	@Autowired
 	InvoiceDAO invoiceDao;
@@ -16,7 +16,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 	@Override
 	@Transactional
 	public void addInvoice(int orderId, String productDesc, float rate) {
-		Invoice invoice=new Invoice();
+		ProductsInOrder invoice=new ProductsInOrder();
 		invoice.setOrderId(orderId);
 		invoice.setProductDesc(productDesc);
 		invoice.setRate(rate);

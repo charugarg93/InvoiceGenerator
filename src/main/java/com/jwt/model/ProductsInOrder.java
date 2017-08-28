@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="INVOICE")
-public class Invoice implements Serializable{
+@Table(name="PRODUCTS_IN_ORDER")
+public class ProductsInOrder implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -28,9 +28,6 @@ public class Invoice implements Serializable{
 	@Column(name = "rate")
 	private float rate;
 	
-	@Column(name = "quantity")
-	private int quantity;
-
 	public int getId() {
 		return id;
 	}
@@ -63,18 +60,10 @@ public class Invoice implements Serializable{
 		this.rate = rate;
 	}
 
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
 
 	@Override
 	public String toString() {
-		return "Invoice [id=" + id + ", orderId=" + orderId + ", productDesc=" + productDesc + ", rate=" + rate
-				+ ", quantity=" + quantity + "]";
-	}
+		return "Invoice [id=" + id + ", orderId=" + orderId + ", productDesc=" + productDesc + ", rate=" + rate + "]";
+		}
 	
 }

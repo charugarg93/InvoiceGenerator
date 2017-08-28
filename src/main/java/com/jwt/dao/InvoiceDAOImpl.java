@@ -4,7 +4,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.jwt.model.Invoice;
+import com.jwt.model.ProductsInOrder;
 
 @Repository
 public class InvoiceDAOImpl implements InvoiceDAO {
@@ -13,7 +13,7 @@ public class InvoiceDAOImpl implements InvoiceDAO {
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public int addInvoice(Invoice invoice) {
+	public int addInvoice(ProductsInOrder invoice) {
 		sessionFactory.getCurrentSession().save(invoice);
 		return invoice.getId();
 	}

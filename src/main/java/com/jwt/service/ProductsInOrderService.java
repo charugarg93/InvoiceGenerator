@@ -1,5 +1,5 @@
 package com.jwt.service;
 
-public interface InvoiceService {
+public interface ProductsInOrderService {
 	void addInvoice(int orderId, String productDesc, float rate);
 }

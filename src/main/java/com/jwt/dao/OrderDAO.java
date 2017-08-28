@@ -1,7 +1,7 @@
 package com.jwt.dao;
 
-import com.jwt.model.Order;
+import com.jwt.model.OrderDetails;
 
 public interface OrderDAO {
-	int addOrderDetails(Order order);
+	int addOrderDetails(OrderDetails order);
 }

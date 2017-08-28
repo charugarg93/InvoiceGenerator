@@ -12,8 +12,8 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="ORDER")
-public class Order implements Serializable {
+@Table(name="ORDER_DETAIL")
+public class OrderDetails implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -27,9 +27,9 @@ public class Order implements Serializable {
 	@Column(name="amount")
 	private float amount;
 	
-	@Column(name="date")
+	@Column(name="due_date")
 	@DateTimeFormat(pattern="dd/MM/yyyy") 
-	private Date date;
+	private Date dueDate;
 
 	public int getId() {
 		return id;
@@ -56,14 +56,14 @@ public class Order implements Serializable {
 	}
 
 	public Date getDate() {
-		return date;
+		return dueDate;
 	}
 
 	public void setDate(Date date) {
-		this.date = date;
+		this.dueDate = date;
 	}
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", userId=" + userId + ", amount=" + amount + ", date=" + date + "]";
+		return "Order [id=" + id + ", userId=" + userId + ", amount=" + amount + ", date=" + dueDate + "]";
 	}
 }

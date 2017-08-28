@@ -24,7 +24,7 @@ public class InvoiceGeneratorServiceImpl implements InvoiceGeneratorService {
 	OrderService orderService;
 
 	@Autowired
-	InvoiceService invoiceService;
+	ProductsInOrderService invoiceService;
 
 	@Override
 	@Transactional

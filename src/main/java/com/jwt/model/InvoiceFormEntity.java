@@ -4,11 +4,17 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.Valid;
+
 public class InvoiceFormEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	@Valid
 	private User user;
+	
+	@Valid
 	private List<ProductDetail> products;
+	
 	private float totalAmount;
 	private Date dueDate;
 	public User getUser() {
@@ -17,6 +23,7 @@ public class InvoiceFormEntity implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
 	public List<ProductDetail> getProducts() {
 		return products;
 	}

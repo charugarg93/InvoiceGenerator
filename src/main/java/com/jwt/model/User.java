@@ -9,8 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.Email;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -19,14 +22,19 @@ public class User  implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
 
-    @Column(name = "NAME")
-    private String name;
-    
-    @Column(name = "EMAIL", unique=true, nullable = false)
-    private String email;
+	@Size(min=1, max=90, message = "Please provide proper name")
+	@NotNull(message = "Name cannot be empty")
+	@Column(name = "NAME")
+	private String name;
+
+	@Size(min=3, message="Please provide proper Email")
+	@NotNull(message = "Email cannot be empty")
+	@Email(message="Please provide proper Email")
+	@Column(name = "EMAIL", unique=true, nullable = false)
+	private String email;
 
 
 	public int getId() {
@@ -60,10 +68,10 @@ public class User  implements Serializable{
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
 	}
-*/
+	 */
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email +/* ", dueDate=" + dueDate +*/ "]";
 	}
-	
+
 }

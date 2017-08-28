@@ -12,95 +12,89 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
 	type="text/javascript"></script>
 <script src="js/dynamic_list_helper.js" type="text/javascript"></script>
-<script>	
-//TODO: remove method 
-function addRow(tableId) {
-	var table = document.getElementById(tableId);
-	var rowCount = table.rows.length;
-	var row = table.insertRow(rowCount);
-	var cell1 = row.insertCell(0);
-	var element1 = document.createElement("input");
-	element1.name = "text";
-	element1.type = "txtbox[]";
-	cell1.appendChild(element1);
-	var element2 = document.createElement("input");
-	element2.name = "text1";
-	element2.type = "txtbox[]";
-	var cell2 = row.insertCell(1);
-	cell2.appendChild(element2);
-}</script>
-	<script language="javascript">
-		function rowAdded(rowElement) {
-			//clear the imput fields for the row
-			$(rowElement).find("input").val('');
-			//may want to reset <select> options etc
+<script language="javascript">
 
-			//in fact you may want to submit the form
-			saveNeeded();
-		}
-		function rowRemoved(rowElement) {
-			saveNeeded();
-			alert("Removed Row HTML:\n" + $(rowElement).html());
-		}
 
-		function saveNeeded() {
-			$('#submit').css('color', 'red');
-			$('#submit').css('font-weight', 'bold');
-			if ($('#submit').val().indexOf('!') != 0) {
-				$('#submit').val('!' + $('#submit').val());
-			}
+	function calc(A) {
+		total= document.getElementById('totalAmount');
+		if(total!=null){
+			document.getElementById('totalAmount').value=parseFloat(total.value)+parseFloat(A);
+			document.getElementById('totalAmount').innerHTML =parseFloat(total.value)+parseFloat(A);
 		}
+	}
 
-        function beforeSubmit() {
-            alert('submitting....');
-            return true;
-        }
-		
-		$(document).ready(function() {
-			var config = {
-				rowClass : 'product',
-				addRowId : 'addProduct',
-				removeRowClass : 'deleteProduct',
-				formId : 'detailsForm',
-				rowContainerId : 'productListContainer',
-				indexedPropertyName : 'products',
-				indexedPropertyMemberNames : 'description,amount',
-				rowAddedListener : rowAdded,
-				rowRemovedListener : rowRemoved,
-				beforeSubmit : beforeSubmit
-			};
-			new DynamicListHelper(config);
-		});
-	</script>
+	function rowAdded(rowElement) {
+		//clear the imput fields for the row
+		$(rowElement).find("input").val('');
+		//may want to reset <select> options etc
+
+		//in fact you may want to submit the form
+		saveNeeded();
+	}
+	function rowRemoved(rowElement) {
+		saveNeeded();
+		alert("Removed Row HTML:\n" + $(rowElement).html());
+	}
+
+	function saveNeeded() {
+		$('#submit').css('color', 'red');
+		$('#submit').css('font-weight', 'bold');
+		if ($('#submit').val().indexOf('!') != 0) {
+			$('#submit').val($('#submit').val());
+		}
+	}
+
+	function beforeSubmit() {
+		alert('submitting....');
+		return true;
+	}
+
+	$(document).ready(function() {
+		var config = {
+			rowClass : 'product',
+			addRowId : 'addProduct',
+			removeRowClass : 'deleteProduct',
+			formId : 'detailsForm',
+			rowContainerId : 'productListContainer',
+			indexedPropertyName : 'products',
+			indexedPropertyMemberNames : 'description,amount',
+			rowAddedListener : rowAdded,
+			rowRemovedListener : rowRemoved,
+			beforeSubmit : beforeSubmit
+		};
+		new DynamicListHelper(config);
+	});
+</script>
 <title>Invoice Generator</title>
 </head>
 <body>
-	<div align="center">
+	<div align="left">
 		<h1>Generate Invoice</h1>
-		<button type="button" onclick="javascript:addRow('table1')">Add</button>
 		<form:form action="saveInvoice" method="post"
 			modelAttribute="invoiceDetails" id="detailsForm">
 			<table>
 				<tr>
 					<td>Name</td>
 					<td><form:input path="user.name" id="name" /></td>
+					<td><form:errors path="user.name" /></td>
 				</tr>
 				<tr>
 					<td>Email</td>
 					<td><form:input path="user.email" id="email" /></td>
+					<td><form:errors path="user.email" /></td>
 				</tr>
 				<tr>
 					<td>Due Date</td>
 					<td><form:input path="dueDate" id="duedate" /></td>
 				</tr>
 			</table>
+			&nbsp;
 
 			<table id="table1">
 				<thead>
 					<tr>
 						<th>Description</th>
 						<th>Amount</th>
-						<th></th>
 					</tr>
 				</thead>
 				<tbody id="productListContainer">
@@ -110,15 +104,24 @@ function addRow(tableId) {
 							<td><form:input path="products[${i.index}].description"
 									id="description${i.index}" /></td>
 							<td><form:input path="products[${i.index}].amount"
-									id="amount${i.index}" /></td>
-							<td><a href="#" class="deleteProduct">Delete product</a></td>
+									id="amount${i.index}"
+									onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+									onChange="calc(this.value)" step="0.01"/></td>
+							<!-- <td><a href="#" class="deleteProduct">Delete product</a></td> -->
+							<tr>
+								<td><form:errors path="products[${i.index}].description" /></td>
+								<td><form:errors path="products[${i.index}].amount" /></td>
+							</tr>
 						</c:forEach>
 					</tr>
 				</tbody>
 			</table>
+			<br>
 			<input type="submit" value="Save" id="submit" />
-			&nbsp;
-			<a href="#" id="addProduct">Add Product</a>
+			<br>
+			<a href="#" id="addProduct">ADD PRODUCT</a>
+			<br>
+			TOTAL: <form:input path="totalAmount" id="totalAmount" name="totalAmount" readonly="true" style="border:0px;" />
 		</form:form>
 	</div>
 </body>

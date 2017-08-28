@@ -2,9 +2,14 @@ package com.jwt.model;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class ProductDetail implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	@Size(min = 2, max = 50, message = "Please provide proper description")
+	@NotNull(message = "Please provide proper description")
 	private String description;
 	
 	private float amount;

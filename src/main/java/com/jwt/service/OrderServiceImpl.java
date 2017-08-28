@@ -24,5 +24,6 @@ public class OrderServiceImpl implements OrderService {
 		order.setDate(dueDate);
 		return orderDao.addOrderDetails(order);
 	}
+	
 
 }

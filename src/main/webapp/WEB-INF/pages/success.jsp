@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-WORKED!
+Invoice Generated
+<br>
+<a href="/invoiceForm">Generate another Invoice</a>
 </body>
 </html>

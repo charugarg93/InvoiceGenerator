@@ -17,18 +17,17 @@
 
 	function calc(A) {
 		total= document.getElementById('totalAmount');
-		if(total!=null){
-			document.getElementById('totalAmount').value=parseFloat(total.value)+parseFloat(A);
-			document.getElementById('totalAmount').innerHTML =parseFloat(total.value)+parseFloat(A);
+		if (total != null) {
+			document.getElementById('totalAmount').value = parseFloat(total.value)
+					+ parseFloat(A);
+			document.getElementById('totalAmount').innerHTML = parseFloat(total.value)
+					+ parseFloat(A);
 		}
 	}
 
-	function rowAdded(rowElement) {
-		//clear the imput fields for the row
+	function rowAdded(rowElement) {//clear the imput fields for the row
 		$(rowElement).find("input").val('');
-		//may want to reset <select> options etc
-
-		//in fact you may want to submit the form
+		
 		saveNeeded();
 	}
 	function rowRemoved(rowElement) {
@@ -37,7 +36,7 @@
 	}
 
 	function saveNeeded() {
-		$('#submit').css('color', 'red');
+		
 		$('#submit').css('font-weight', 'bold');
 		if ($('#submit').val().indexOf('!') != 0) {
 			$('#submit').val($('#submit').val());
@@ -59,8 +58,8 @@
 			indexedPropertyName : 'products',
 			indexedPropertyMemberNames : 'description,amount',
 			rowAddedListener : rowAdded,
-			rowRemovedListener : rowRemoved,
-			beforeSubmit : beforeSubmit
+			rowRemovedListener : rowRemoved
+			
 		};
 		new DynamicListHelper(config);
 	});
@@ -84,7 +83,7 @@
 					<td><form:errors path="user.email" /></td>
 				</tr>
 				<tr>
-					<td>Due Date</td>
+					<td>Due Date [dd/mm/yyyy]</td>
 					<td><form:input path="dueDate" id="duedate" /></td>
 				</tr>
 			</table>
@@ -106,7 +105,7 @@
 							<td><form:input path="products[${i.index}].amount"
 									id="amount${i.index}"
 									onkeypress='return event.charCode >= 48 && event.charCode <= 57'
-									onChange="calc(this.value)" step="0.01"/></td>
+										onChange="calc(this.value)"/></td>
 							<!-- <td><a href="#" class="deleteProduct">Delete product</a></td> -->
 							<tr>
 								<td><form:errors path="products[${i.index}].description" /></td>

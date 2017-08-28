@@ -9,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jwt.exception.InvoiceGeneratorInternalException;
 import com.jwt.model.InvoiceFormEntity;
 import com.jwt.model.ProductDetail;
 import com.jwt.model.User;
@@ -48,14 +50,26 @@ public class InvoiceController {
 
 	@Valid
 	@RequestMapping(value = "/saveInvoice", method = RequestMethod.POST)
-	public ModelAndView saveEmployee(@Valid @ModelAttribute("invoiceDetails") InvoiceFormEntity invoiceDetails, BindingResult bindingResult) {
+	public ModelAndView saveEmployee(@Valid @ModelAttribute("invoiceDetails") InvoiceFormEntity invoiceDetails, BindingResult bindingResult) throws InvoiceGeneratorInternalException {
 		log.info("from jsp : " + invoiceDetails);
 		if (bindingResult.hasErrors()) {
-			log.info("validation error : " + invoiceDetails);
+			log.info("Validation error for request: " + invoiceDetails);
 			return new ModelAndView("InvoiceFormExp");
 		}
 
+		log.debug("Adding Invoice details for email: " + invoiceDetails.getUser().getEmail());
 		invoiceService.addInvoiceRecord(invoiceDetails);
 		return new ModelAndView("success");
+	}
+	
+	@ExceptionHandler(InvoiceGeneratorInternalException.class)
+	public ModelAndView handleAllException(InvoiceGeneratorInternalException exception) {
+		ModelAndView model = new ModelAndView();
+		
+		model.addObject("errCode", exception.getErrCode());
+		model.addObject("errMsg", exception.getErrMsg());
+		model.setViewName("/errorPage");
+		return model;
+
 	}
 }

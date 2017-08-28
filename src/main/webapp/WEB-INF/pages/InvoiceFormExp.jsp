@@ -13,10 +13,8 @@
 	type="text/javascript"></script>
 <script src="js/dynamic_list_helper.js" type="text/javascript"></script>
 <script language="javascript">
-
-
 	function calc(A) {
-		total= document.getElementById('totalAmount');
+		total = document.getElementById('totalAmount');
 		if (total != null) {
 			document.getElementById('totalAmount').value = parseFloat(total.value)
 					+ parseFloat(A);
@@ -27,7 +25,7 @@
 
 	function rowAdded(rowElement) {//clear the imput fields for the row
 		$(rowElement).find("input").val('');
-		
+
 		saveNeeded();
 	}
 	function rowRemoved(rowElement) {
@@ -36,7 +34,7 @@
 	}
 
 	function saveNeeded() {
-		
+
 		$('#submit').css('font-weight', 'bold');
 		if ($('#submit').val().indexOf('!') != 0) {
 			$('#submit').val($('#submit').val());
@@ -59,7 +57,7 @@
 			indexedPropertyMemberNames : 'description,amount',
 			rowAddedListener : rowAdded,
 			rowRemovedListener : rowRemoved
-			
+
 		};
 		new DynamicListHelper(config);
 	});
@@ -71,12 +69,14 @@
 		<h1>Generate Invoice</h1>
 		<form:form action="saveInvoice" method="post"
 			modelAttribute="invoiceDetails" id="detailsForm">
-			<table>
+			<table cellspacing="10">
 				<tr>
 					<td>Name</td>
 					<td><form:input path="user.name" id="name" /></td>
 					<td><form:errors path="user.name" /></td>
 				</tr>
+				<br>
+				<br>
 				<tr>
 					<td>Email</td>
 					<td><form:input path="user.email" id="email" /></td>
@@ -86,10 +86,12 @@
 					<td>Due Date [dd/mm/yyyy]</td>
 					<td><form:input path="dueDate" id="duedate" /></td>
 				</tr>
+				<br>
+				<br>
 			</table>
 			&nbsp;
 
-			<table id="table1">
+			<table id="table1" cellspacing="10">
 				<thead>
 					<tr>
 						<th>Description</th>
@@ -105,7 +107,7 @@
 							<td><form:input path="products[${i.index}].amount"
 									id="amount${i.index}"
 									onkeypress='return event.charCode >= 48 && event.charCode <= 57'
-										onChange="calc(this.value)"/></td>
+									onChange="calc(this.value)" /></td>
 							<!-- <td><a href="#" class="deleteProduct">Delete product</a></td> -->
 							<tr>
 								<td><form:errors path="products[${i.index}].description" /></td>
@@ -116,13 +118,20 @@
 				</tbody>
 			</table>
 			<br>
-			
+
 			<a href="#" id="addProduct">ADD PRODUCT</a>
-			<br><br>
-			<input type="submit" value="Save" id="submit" />
-			<br><br>
-			$TOTAL: <form:input path="totalAmount" id="totalAmount" name="totalAmount" readonly="true" style="border:0px;" />
-			</form:form>
+			<br>
+			<br>
+			TOTAL &nbsp;&nbsp;&nbsp;&nbsp;$ <form:input path="totalAmount"
+				id="totalAmount" name="totalAmount" readonly="true"
+				style="border:0px;" />
+
+			<br>
+			<br>
+			<input type="submit" value="SEND" id="submit" />
+			<br>
+			<br>
+		</form:form>
 	</div>
 </body>
 </html>

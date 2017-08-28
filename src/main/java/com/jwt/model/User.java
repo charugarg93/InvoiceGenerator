@@ -31,10 +31,10 @@ public class User  implements Serializable{
     private String email;
 
     //@NotNull
-    @DateTimeFormat(pattern="dd/MM/yyyy") 
+    /*@DateTimeFormat(pattern="dd/MM/yyyy") 
     @Column(name = "DUE_DATE")
     //@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-    private Date dueDate;
+    private Date dueDate;*/
 
 	public int getId() {
 		return id;
@@ -60,12 +60,17 @@ public class User  implements Serializable{
 		this.email = email;
 	}
 
-	public Date getDueDate() {
+	/*public Date getDueDate() {
 		return dueDate;
 	}
 
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
 	}
-
+*/
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", email=" + email +/* ", dueDate=" + dueDate +*/ "]";
+	}
+	
 }

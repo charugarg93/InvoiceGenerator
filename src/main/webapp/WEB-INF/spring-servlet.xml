@@ -17,6 +17,7 @@
 
 	<!-- Specifying the Resource location to load JS, CSS, Images etc -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="js/**" location="/WEB-INF/js/"/>
 
 	<!-- View Resolver -->
 	<bean

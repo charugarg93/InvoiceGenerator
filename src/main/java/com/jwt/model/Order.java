@@ -62,4 +62,8 @@ public class Order implements Serializable {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", userId=" + userId + ", amount=" + amount + ", date=" + date + "]";
+	}
 }

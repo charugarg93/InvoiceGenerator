@@ -3,10 +3,14 @@ package com.jwt.model;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="INVOICE")
 public class Invoice implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -66,4 +70,11 @@ public class Invoice implements Serializable{
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
+	@Override
+	public String toString() {
+		return "Invoice [id=" + id + ", orderId=" + orderId + ", productDesc=" + productDesc + ", rate=" + rate
+				+ ", quantity=" + quantity + "]";
+	}
+	
 }
